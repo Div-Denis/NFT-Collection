@@ -37,7 +37,7 @@ export default function Home() {
         signer
       );
       //从合约中调用presaleMint,只有列入白名单的地址才能铸币
-      const tx = await whitelistContract.presakeMint({
+      const tx = await whitelistContract.presaleMint({
       //value表示一个开发者的成本，即0.01eth
       //我们正在使用ether.js中的utils库，将0.01字符串解析为ether
         value: utils.parseEther("0.01"),
@@ -147,7 +147,7 @@ export default function Home() {
         provider
       );
       //从合约里调用presaleEnded
-      const _presaleEnded = await nftContract.prosaleEnded();
+      const _presaleEnded = await nftContract.presaleEnded();
       //_presaleEnded是个大数字，所以我们用 lt(函数)
       //date.now()/1000以秒为单位返回当前时间
       //我们比较presaleEnded时间戳是否小于当前时间
@@ -348,7 +348,7 @@ export default function Home() {
     //如果预售已经结束了，就是时候公开铸造了
     if(presaleStarted && presaleEnded){
       return(
-        <button className={styles.button} onClick = {presaleMint}>
+        <button className={styles.button} onClick = {publicMint}>
           Public Mint 🚀
         </button>
       );
